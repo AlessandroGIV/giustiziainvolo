@@ -30,7 +30,14 @@ export default function RootLayout({
   return (
     <html lang="it" className={`${montserrat.variable} dark`} style={{ colorScheme: 'dark' }}>
       <head>
-        {/* Favicon */}
+        {/* Vector favicon (SVG) */}
+        <link
+          rel="icon"
+          type="image/svg+xml"
+          href="/Image-1.svg"
+        />
+
+        {/* PNG & ICO fallback */}
         <link
           rel="icon"
           type="image/png"
@@ -39,9 +46,26 @@ export default function RootLayout({
         />
         <link
           rel="icon"
-          type="image/x-icon"
-          href="/favicon2.ico"
+          type="image/png"
+          sizes="180x180"
+          href="/favicon-180x180.png"
         />
+        <link
+          rel="icon"
+          href="/favicon-highres.ico"
+        />
+
+        {/* Structured Data per Knowledge Panel (usa SVG) */}
+        <script type="application/ld+json">
+          {`
+          {
+            "@context": "https://schema.org",
+            "@type": "Organization",
+            "url": "https://giustiziainvolo.it",
+            "logo": "https://giustiziainvolo.it/Image-1.svg"
+          }
+        `}
+        </script>
 
         {/* Google Analytics */}
         <Script
