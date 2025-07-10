@@ -30,6 +30,19 @@ export default function RootLayout({
   return (
     <html lang="it" className={`${montserrat.variable} dark`} style={{ colorScheme: 'dark' }}>
       <head>
+        {/* Favicon */}
+        <link
+          rel="icon"
+          type="image/png"
+          sizes="64x64"
+          href="/favicon2.png"
+        />
+        <link
+          rel="icon"
+          type="image/x-icon"
+          href="/favicon2.ico"
+        />
+
         {/* Google Analytics */}
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-N9B7Q6PYCE"
