@@ -5,6 +5,7 @@ import "./globals.css"
 import Header from "@/components/header"
 import Footer from "@/components/footer"
 import { ThemeProvider } from "@/components/theme-provider"
+import Script from "next/script" // Aggiunto per usare lo script GA
 
 const montserrat = Montserrat({
   subsets: ["latin"],
@@ -27,12 +28,31 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="it" className={`${montserrat.variable} dark`} style={{colorScheme: 'dark'}}>
+    <html lang="it" className={`${montserrat.variable} dark`} style={{ colorScheme: 'dark' }}>
+      <head>
+        {/* Google Analytics */}
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-N9B7Q6PYCE"
+          strategy="afterInteractive"
+        />
+        <Script
+          id="ga4"
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', 'G-N9B7Q6PYCE');
+            `,
+          }}
+        />
+      </head>
       <body className="min-h-screen bg-primary text-white flex flex-col">
-        <ThemeProvider 
-          attribute="class" 
-          defaultTheme="dark" 
-          enableSystem={false} 
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="dark"
+          enableSystem={false}
           disableTransitionOnChange
           forcedTheme="dark"
         >
