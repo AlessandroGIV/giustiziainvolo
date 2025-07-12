@@ -5,7 +5,7 @@ import "./globals.css"
 import Header from "@/components/header"
 import Footer from "@/components/footer"
 import { ThemeProvider } from "@/components/theme-provider"
-import Script from "next/script" // Aggiunto per usare lo script GA
+import Script from "next/script" // Aggiunto per usare script GA e Google Ads
 
 const montserrat = Montserrat({
   subsets: ["latin"],
@@ -78,9 +78,28 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{
             __html: `
               window.dataLayer = window.dataLayer || [];
-              function gtag(){dataLayer.push(arguments);}
+              function gtag(){dataLayer.push(arguments);}  
               gtag('js', new Date());
               gtag('config', 'G-N9B7Q6PYCE');
+            `,
+          }}
+        />
+
+        {/* Google Ads Global Site Tag */}
+        <Script
+          async
+          src="https://www.googletagmanager.com/gtag/js?id=AW-17322484652"
+          strategy="afterInteractive"
+        />
+        <Script
+          id="google-ads"
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}  
+              gtag('js', new Date());
+              gtag('config', 'AW-17322484652');
             `,
           }}
         />
