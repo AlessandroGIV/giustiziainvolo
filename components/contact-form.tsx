@@ -1,8 +1,7 @@
-"use client"
+""use client"
 
-import type React from "react"
-
-import { useState, useEffect } from "react"
+import React, { useState, useEffect } from "react"
+import Script from "next/script"  // Aggiunto per lo snippet di conversione Google Ads
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
@@ -136,18 +135,31 @@ const ContactForm = () => {
 
   if (isSubmitted) {
     return (
-      <div className="bg-primary-foreground/10 p-8 rounded-lg text-center">
-        <div className="inline-flex items-center justify-center w-16 h-16 bg-green-500/20 rounded-full mb-4">
-          <Mail className="h-8 w-8 text-green-500" />
+      <>
+        {/* Snippet evento Google Ads */}
+        <Script
+          id="lead-conversion"
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `
+              gtag('event', 'conversion', { 'send_to': 'AW-17322484652/ShEICO6s0usaEKzHgMRA' });
+            `,
+          }}
+        />
+
+        <div className="bg-primary-foreground/10 p-8 rounded-lg text-center">
+          <div className="inline-flex items-center justify-center w-16 h-16 bg-green-500/20 rounded-full mb-4">
+            <Mail className="h-8 w-8 text-green-500" />
+          </div>
+          <h3 className="text-2xl font-bold text-secondary mb-4">Richiesta Inviata!</h3>
+          <p className="text-white/80 mb-6">
+            Grazie per averci contattato. Un nostro avvocato ti risponderà al più presto per valutare il tuo caso.
+          </p>
+          <Button onClick={() => setIsSubmitted(false)} className="bg-secondary hover:bg-secondary/90 text-black">
+            Invia un'altra richiesta
+          </Button>
         </div>
-        <h3 className="text-2xl font-bold text-secondary mb-4">Richiesta Inviata!</h3>
-        <p className="text-white/80 mb-6">
-          Grazie per averci contattato. Un nostro avvocato ti risponderà al più presto per valutare il tuo caso.
-        </p>
-        <Button onClick={() => setIsSubmitted(false)} className="bg-secondary hover:bg-secondary/90 text-black">
-          Invia un'altra richiesta
-        </Button>
-      </div>
+      </>
     )
   }
 
@@ -221,10 +233,10 @@ const ContactForm = () => {
         <Label htmlFor="phone">Telefono (opzionale per essere ricontattato)</Label>
         <Input
           id="phone"
-          name="phone"
-          type="tel"
-          placeholder="Il tuo numero di telefono"
-          className="bg-primary-foreground/10 border-white/20 focus:border-secondary"
+            name="phone"
+            type="tel"
+            placeholder="Il tuo numero di telefono"
+            className="bg-primary-foreground/10 border-white/20 focus:border-secondary"
         />
       </div>
 
@@ -269,7 +281,7 @@ const ContactForm = () => {
               <path
                 className="opacity-75"
                 fill="currentColor"
-                d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2-647z"
               ></path>
             </svg>
             Invio in corso...
