@@ -83,7 +83,7 @@ const ContactForm: React.FC = () => {
         // Trigger Google Ads conversion
         if (typeof (window as any).gtag === "function") {
           (window as any).gtag("event", "conversion", {
-            send_to: `${GA_TRACKING_ID}/ShEICO6s0usaEKzHgMRA`,
+            send_to: 'AW-17322484652/nuZvCKiXrbAbEKzHgMRA',
           })
         }
         setIsSubmitted(true)
